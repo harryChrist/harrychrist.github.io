@@ -1,11 +1,29 @@
+'use client';
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaExternalLinkAlt, FaGithub } from 'react-icons/fa';
 import { FaArrowRight } from 'react-icons/fa6';
+import { motion } from "framer-motion";
 
 
-const CardProject = ({ image, title, description, link, id }: any) => {
+const CardProject = ({ image, title, description, link, id, github }: any) => {
+
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+  const isArray = Array.isArray(image);
+  const isVideo = !isArray && [".mp4", ".webm", ".mov"].some((ext) => image.endsWith(ext));
+
+  // Slider autoplay
+  useEffect(() => {
+    if (isArray && !isHovered) {
+      const interval = setInterval(() => {
+        setCurrentSlide((prev) => (prev + 1) % image.length);
+      }, 3000);
+      return () => clearInterval(interval);
+    }
+  }, [isArray, isHovered, image.length]);
+
   const handleLiveDemo = (e: any) => {
     if (!link) {
       e.preventDefault();
@@ -26,14 +44,69 @@ const CardProject = ({ image, title, description, link, id }: any) => {
         <div className="absolute inset-0 transition-opacity duration-300 opacity-50 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-pink-500/10 group-hover:opacity-70" />
 
         <div className="relative z-10 p-5">
-          <div className="relative overflow-hidden rounded-lg">
-            <Image
-              src={image}
-              alt={title}
-              width={1000}
-              height={1000}
-              className="object-cover w-full h-full transition-transform duration-500 transform group-hover:scale-105"
-            />
+        <div 
+            className="relative overflow-hidden rounded-lg w-full max-w-[500px]"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+          >
+            {isVideo ? (
+              <motion.div
+                className="relative overflow-hidden rounded-lg"
+                initial={{ height: "220px" }}
+                whileHover={{ height: "auto" }}
+                transition={{ duration: 0.5, ease: "easeInOut" }}
+              >
+                <video
+                  src={image}
+                  className="object-cover w-full h-full"
+                  controls
+                  loop
+                  muted
+                  autoPlay
+                />
+              </motion.div>
+            ) : isArray ? (
+              <div className="relative h-[220px]">
+                {/* Slider Container */}
+                <div 
+                  className="flex transition-transform duration-500 ease-in-out"
+                  style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+                >
+                  {image.map((img: string, index: number) => (
+                    <div key={index} className="flex-shrink-0 w-full h-full">
+                      <Image
+                        src={img}
+                        alt={`${title} - Slide ${index + 1}`}
+                        width={1000}
+                        height={1000}
+                        className="object-cover w-full h-[220px]"
+                      />
+                    </div>
+                  ))}
+                </div>
+
+                {/* Navigation Dots */}
+                <div className="absolute flex gap-2 transform -translate-x-1/2 bottom-2 left-1/2">
+                  {image.map((_: any, index: number) => (
+                    <button
+                      key={index}
+                      onClick={() => setCurrentSlide(index)}
+                      className={`w-2 h-2 rounded-full transition-colors ${
+                        index === currentSlide ? 'bg-white' : 'bg-gray-500'
+                      }`}
+                    />
+                  ))}
+                </div>
+              </div>
+            ) : (
+              <Image
+                src={image}
+                alt={title}
+                width={1000}
+                height={1000}
+                className="object-cover w-full h-[220px]"
+              />
+            )}
           </div>
 
           <div className="mt-4 space-y-3">
@@ -46,10 +119,10 @@ const CardProject = ({ image, title, description, link, id }: any) => {
             </p>
 
             <div className="flex items-center justify-between gap-2 pt-4">
-              <div className="flex-1">
-                {link ? (
+              {github &&
+                <div className="flex-1">
                   <a
-                    href={link}
+                    href={github}
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={handleLiveDemo}
@@ -60,13 +133,11 @@ const CardProject = ({ image, title, description, link, id }: any) => {
                       Github Repositório
                     </span>
                   </a>
-                ) : (
-                  <span className="text-sm text-gray-500">Demo Not Available</span>
-                )}
-              </div>
+                </div>
+              }
 
-              <div className="flex-1">
-                {link ? (
+              {link &&
+                <div className="flex-1">
                   <a
                     href={link}
                     target="_blank"
@@ -79,10 +150,8 @@ const CardProject = ({ image, title, description, link, id }: any) => {
                     </span>
                     <FaExternalLinkAlt className="w-4 h-4 md:w-3 md:h-3" />
                   </a>
-                ) : (
-                  <span className="hidden text-sm text-gray-500 md:inline">Demo Not Available</span>
-                )}
-              </div>
+                </div>
+              }
 
               <div className="flex-1 text-right">
                 {id ? (

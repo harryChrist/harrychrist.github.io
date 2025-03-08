@@ -1,42 +1,20 @@
 module.exports = [
   {
     id: 1,
-    title: "E-commerce Platform",
-    description: "Full-stack e-commerce platform with Next.js and Stripe",
-    image: "/placeholder.webp",
-    link: "https://example.com",
-    github: "https://github.com",
-    tags: ["Next.js", "Prisma", "Stripe"],
+    title: "Mahou Reader",
+    description: "Um site de leitura de novels online",
+    image: ['/projects/mahoureader/home.png', '/projects/mahoureader/novel.png', '/projects/mahoureader/reader.png', '/projects/mahoureader/biblioteca.png', '/projects/mahoureader/admin.png'],
+    link: "https://mahoureader.com/",
+    tags: ["Next.js", "Prisma", "Tailwind", "PostgreSQL"],
     category: "Web Development"
   },
   {
     id: 2,
-    title: "AI Chat Interface",
-    description: "AI-powered chat with natural language processing",
-    image: "/placeholder.webp",
-    link: "https://example.com",
-    github: "https://github.com",
-    tags: ["OpenAI", "Next.js", "Tailwind"],
-    category: "AI"
-  },
-  {
-    id: 3,
-    title: "Task Management App",
-    description: "Real-time task management with collaboration",
-    image: "/placeholder.webp",
-    link: "https://example.com",
-    github: "https://github.com",
-    tags: ["React", "Node.js", "Socket.io"],
-    category: "Productivity"
-  },
-  {
-    id: 4,
-    title: "Mobile Fitness App",
-    description: "Cross-platform fitness tracking application",
-    image: "/placeholder.webp",
-    link: "https://example.com",
-    github: "https://github.com",
-    tags: ["React Native", "Firebase", "Expo"],
+    title: "Animelist ReactNative",
+    description: "Aplicação Mobile como uma biblioteca usando a API Jikan",
+    image: "https://user-images.githubusercontent.com/30308156/172724775-85722f69-9d4a-42e3-895c-a8611c86a20b.mp4",
+    github: "https://github.com/harryChrist/AnimeList-ReactNative",
+    tags: ['React Native', 'Expo', 'Jikan'],
     category: "Mobile"
   },
 ]
