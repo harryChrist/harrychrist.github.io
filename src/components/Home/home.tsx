@@ -6,7 +6,7 @@ import NavBar from "../NavBar";
 
 export default function HomeSection() {
     return (
-        <section id="Home" className="relative min-h-screen overflow-hidden bg-black">
+        <section id="Home" className="relative min-h-screen overflow-hidden text-white bg-black">
             {/* Navigation */}
             <NavBar />
 
@@ -42,10 +42,12 @@ export default function HomeSection() {
                     <h2 className="text-2xl font-light lg:text-4xl">Developer Full Stack</h2>
                 </div>
             </div>
-            
+
             <div className="absolute bottom-0 z-0 font-bold leading-none text-white transform -translate-x-1/2 left-1/2 whitespace-nowrap">
                 <button className="flex flex-col items-center text-gray-200 transition-colors hover:text-gray-600 animate-bounce">
-                    <span className="text-[15px]">MAIS</span>
+                    <a href="#About" className="flex flex-col items-center">
+                        <span className="text-[15px]">MAIS</span>
+                    </a>
                     <MdOutlineKeyboardArrowDown className="w-12 h-12 mb-5" />
                 </button>
             </div>

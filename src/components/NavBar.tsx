@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { FaGithub, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { MdMenu, MdClose } from "react-icons/md";
+import { ThemeToggle } from "./theme-toggle";
 
 export default function NavBar() {
     const [isOpen, setIsOpen] = useState(false);
@@ -103,6 +104,7 @@ export default function NavBar() {
                             </div>
                         </div>
                     </a>
+                    
 
                     {/* Desktop Navigation */}
                     <div className="hidden md:block">
@@ -166,14 +168,14 @@ export default function NavBar() {
                 <div className="absolute flex items-center w-full h-full p-8 space-y-6 text-left">
                     <div className='w-full space-y-4 justiy-center'>
                         <h3>Navegação</h3>
-                        <hr className="h-px bg-gray-200 border-0 dark:bg-gray-700" />
+                        <hr className="h-px bg-gray-700 border-0" />
                         <ul className="my-6 mb-12 space-y-4">
                             <li className="text-2xl text-white uppercase hover:text-blue-500"><a href='#about'>Sobre</a></li>
                             <li className="text-2xl text-white uppercase hover:text-blue-500"><a href='#skills'>Habilidades</a></li>
                             <li className="text-2xl text-white uppercase hover:text-blue-500"><a href='#projects'>Projetos</a></li>
                             <li className="text-2xl text-white uppercase hover:text-blue-500"><a href='#contact'>Contact</a></li>
                         </ul>
-                        <hr className="h-px bg-gray-200 border-0 dark:bg-gray-700" />
+                        <hr className="h-px bg-gray-700 border-0" />
                         <h3>Social</h3>
                         <ul className="flex space-x-5">
                             <li className="text-3xl text-white"><FaLinkedin /></li>

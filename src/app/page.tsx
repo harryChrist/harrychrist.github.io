@@ -7,7 +7,7 @@ import ContactSection from "@/components/Contact";
 
 export default function PortfolioPage() {
     return (
-        <div className="bg-white dark:bg-[#030014]">
+        <div className="bg-[#030014]">
             <AnimatedBackground />
             <HomeSection />
             <AboutSection />
@@ -17,7 +17,7 @@ export default function PortfolioPage() {
             <footer>
                 <center>
                     <hr className="my-3 text-center border-gray-400 opacity-15 sm:mx-auto lg:my-6" />
-                    <span className="block pb-4 text-sm text-center text-gray-500 dark:text-gray-400">
+                    <span className="block pb-4 text-sm text-center text-gray-400">
                         © 2025{" "}
                         <a href="https://flowbite.com/" className="hover:underline">
                             Henrique Christ
