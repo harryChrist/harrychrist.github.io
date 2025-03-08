@@ -1,5 +1,6 @@
 "use client"
 
+import AnimatedBackground from "@/components/Background"
 import { useEffect, useState } from "react"
 
 interface LoadingProps {
@@ -70,7 +71,7 @@ export default function Loading({ text }: LoadingProps) {
   return (
     <div className={"fixed inset-0 z-50 flex items-center justify-center" + isAnimating ? " none" : ""}>
       <div
-        className={`absolute inset-0 bg-gray-800 flex items-center justify-center rounded-none transition-all duration-700 ease-in-out ${
+        className={`absolute inset-0 bg-black flex items-center justify-center rounded-none transition-all duration-700 ease-in-out ${
           isAnimating ? "-translate-y-full rounded-b-[40vw]" : ""
         }`}
       >
