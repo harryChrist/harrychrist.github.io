@@ -51,7 +51,7 @@ export default function ContactSection() {
   };
 
   return (
-    <div className="min-h-screen bg-[#030014]">
+    <div id="Contact" className="min-h-screen bg-[#030014]">
       {/* Alert Message */}
       {alertMessage && (
         <div className={`fixed top-4 right-4 p-4 rounded-lg ${alertMessage.includes("success")
