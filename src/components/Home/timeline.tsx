@@ -22,11 +22,13 @@ export default function TimelineSection() {
   }
 
   return (
-    <div className="min-h-screen bg-black px-4 py-16 text-white">
-      <div className="mx-auto max-w-6xl">
+    <div className="min-h-screen px-4 py-16 pt-20 text-white le">
+      <div className="max-w-6xl mx-auto">
         <header className="mb-16 text-center">
-          <h1 className="mb-4 text-4xl font-bold tracking-tight sm:text-5xl">Minha Jornada Profissional</h1>
-          <p className="mx-auto max-w-2xl text-lg text-gray-400">
+          <h2 className="inline-block text-3xl md:text-5xl font-bold bg-gradient-to-r from-[#6366f1] to-[#a855f7] text-transparent bg-clip-text">
+            Minha Jornada Profissional
+          </h2>
+          <p className="max-w-2xl mx-auto text-lg text-gray-400">
             Um histórico das minhas experiências e conquistas ao longo dos anos
           </p>
         </header>
@@ -45,10 +47,10 @@ export default function TimelineSection() {
                 </div>
 
               </div>
-              <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-[#0A1428] p-6 rounded border border-blue-900/30 hover:border-blue-600/50 shadow">
-                <div className="flex items-center justify-between space-x-2 mb-1">
+              <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-gradient-to-b from-[rgba(139,92,246,0.03)] to-[rgba(59,130,246,0.03)] border border-white/10 rounded-2xl backdrop-blur-sm p-6 hover:border-blue-300/50 shadow">
+                <div className="flex items-center justify-between mb-1 space-x-2">
                   <p className="text-lg font-medium">{experience.role}</p>
-                  <time className="font-caveat font-medium text-white/70">{experience.period}</time>
+                  <time className="font-medium font-caveat text-white/70">{experience.period}</time>
                 </div>
                 <h3 className="text-xl font-bold text-blue-400">{experience.company}</h3>
                 <p className="text-sm text-gray-400">
@@ -59,7 +61,7 @@ export default function TimelineSection() {
                   {experience.tools.map((tool) => (
                     <span
                       key={tool}
-                      className="rounded-full border border-blue-800 bg-blue-950/50 px-3 py-1 text-xs font-medium text-blue-300"
+                      className="px-3 py-1 text-xs font-medium text-blue-300 border border-blue-800 rounded-full bg-blue-950/50"
                     >
                       {tool}
                     </span>

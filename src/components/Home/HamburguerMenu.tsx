@@ -15,7 +15,7 @@ const HamburgerMenu = ({ menuIconSize = 24, closeIconSize = 32 }) => {
         <div className="relative">
             {/* Ícone do Hamburger */}
             <button
-                className="flex items-center justify-center w-12 h-12 transition-all duration-200 border-2 rounded-full shadow-lg bg-opacity-20 hover:scale-110 hover:shadow-xl md:hidden"
+                className="flex items-center justify-center w-12 h-12 p-0 m-0 transition-all duration-200 rounded-full shadow-lg bg-opacity-20 hover:scale-110 hover:shadow-xl md:hidden"
                 onClick={toggleMenu}
             >
                 {isOpen ? (
@@ -25,7 +25,6 @@ const HamburgerMenu = ({ menuIconSize = 24, closeIconSize = 32 }) => {
                 )}
             </button>
 
-            {/* Menu que abre na tela inteira ou até 1/2 do width em telas grandes */}
             <div
                 className={`fixed top-0 z-1 right-0 h-full bg-black transition-all duration-600 ease-in-out ${isOpen ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"
                     } w-full md:w-1/2`}

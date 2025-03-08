@@ -2,48 +2,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import HamburgerMenu from "./HamburguerMenu";
+import NavBar from "../NavBar";
 
 export default function HomeSection() {
     return (
-        <section className="relative min-h-screen overflow-hidden bg-black">
+        <section id="Home" className="relative min-h-screen overflow-hidden bg-black">
             {/* Navigation */}
-            <nav className="relative flex items-center justify-between p-8 z-1">
-                <a
-                    href="https://github.com/harryChrist"
-                    className="flex items-center space-x-2 group" // Adicionamos "group" para estilização no hover
-                >
-                    {/* Símbolo © girando */}
-                    <div className="transition-transform duration-500 transform group-hover:rotate-360">
-                        <span>©</span>
-                    </div>
-
-                    {/* Texto alternando */}
-                    <div className="overflow-hidden w-[150px] relative">
-                        <div className="transition-all duration-500 transform whitespace-nowrap group-hover:opacity-0 group-hover:-translate-y-6">
-                            <span>Code by </span>
-                            <span>Henrique</span>
-                        </div>
-                        <div className="absolute top-0 left-0 transition-all duration-500 transform translate-y-6 opacity-0 whitespace-nowrap group-hover:opacity-100 group-hover:translate-y-0">
-                            <span>Henrique Christ</span>
-                        </div>
-                    </div>
-                </a>
-                <div className="flex items-center gap-8">
-                    <Link href="#about" className="hidden transition-opacity md:block hover:opacity-70">
-                        Sobre
-                    </Link>
-                    <Link href="#skills" className="hidden transition-opacity md:block hover:opacity-70">
-                        Habilidades
-                    </Link>
-                    <Link href="#projects" className="hidden transition-opacity md:block hover:opacity-70">
-                        Projetos
-                    </Link>
-                    <Link href="#contact" className="hidden transition-opacity md:block hover:opacity-70">
-                        Contact
-                    </Link>
-                    <HamburgerMenu/>
-                </div>
-            </nav>
+            <NavBar />
 
             <div className="relative items-center justify-center hidden w-full h-full mt-26 lg:block">
                 <div className="relative w-full py-4 overflow-hidden">

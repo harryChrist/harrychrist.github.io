@@ -7,22 +7,20 @@ import { FiFileText } from "react-icons/fi";
 import { IoSparkles } from "react-icons/io5";
 
 import projects from "@/data/projects";
+import certificates from "@/data/certificates";
 
 export default function AboutSection() {
 
   // Memoized calculations
     const { totalProjects, totalCertificates, YearExperience } = useMemo(() => {
-      const storedProjects = projects;
-      const storedCertificates = JSON.parse("[]");
-      
       const startDate = new Date("2021-01-01");
       const today = new Date();
       const experience = today.getFullYear() - startDate.getFullYear() -
         (today < new Date(today.getFullYear(), startDate.getMonth(), startDate.getDate()) ? 1 : 0);
   
       return {
-        totalProjects: storedProjects.length,
-        totalCertificates: storedCertificates.length,
+        totalProjects: projects.length,
+        totalCertificates: certificates.length,
         YearExperience: experience
       };
     }, []);
@@ -55,7 +53,7 @@ export default function AboutSection() {
     ], [totalProjects, totalCertificates, YearExperience]);
 
   return (
-    <section id='about' className="h-auto pb-[10%] pt-[5%] text-white overflow-hidden px-[5%] sm:px-[5%] lg:px-[10%] sm-mt-0 bg-[#030014]" >
+    <section id='About' className="h-auto pb-[10%] pt-[5%] text-white overflow-hidden px-[5%] sm:px-[5%] lg:px-[10%] sm-mt-0" >
       <div className="text-center lg:mb-8 mb-2 px-[5%]">
         <div className="relative inline-block group">
           <h2
@@ -185,6 +183,8 @@ const ProfileImage = memo(() => (
   </div>
 ));
 
+ProfileImage.displayName = "ProfileImage";
+
 const StatCard = memo(({ icon: Icon, color, value, label, description, animation }: any) => (
   <div data-aos={animation} data-aos-duration={1300} className="relative group">
     <div className="relative z-10 flex flex-col justify-between h-full p-6 overflow-hidden transition-all duration-300 border bg-gray-900/50 backdrop-blur-lg rounded-2xl border-white/10 hover:scale-105 hover:shadow-2xl">
@@ -228,3 +228,5 @@ const StatCard = memo(({ icon: Icon, color, value, label, description, animation
     </div>
   </div>
 ));
+
+StatCard.displayName = "StatCard";

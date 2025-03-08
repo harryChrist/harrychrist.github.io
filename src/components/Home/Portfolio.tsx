@@ -87,7 +87,7 @@ export default function FullWidthTabs() {
                                 {index === 1 && <FaAward className={`w-5 h-5 mb-2 ${activeTab === 1 ? "text-purple-400" : ""}`} />}
                                 {index === 2 && <FaCubes className={`w-5 h-5 mb-2 ${activeTab === 2 ? "text-purple-400" : ""}`} />}
                                 <span className="text-sm font-semibold">
-                                    {["Projects", "Certificates", "Tech Stack"][index]}
+                                    {["Projetos", "Certificados", "Conhecimento"][index]}
                                 </span>
                             </button>
                         ))}
@@ -98,7 +98,7 @@ export default function FullWidthTabs() {
                     {activeTab === 0 && (
                         <div className="animate-fade-in">
                             <div className="container flex items-center justify-center mx-auto overflow-hidden">
-                                <div className="grid grid-cols-2 gap-5 md:grid-cols-2 lg:grid-cols-2 2xl:grid-cols-3">
+                                <div className="grid grid-cols-2 gap-4 lg:grid-cols-3 2xl:grid-cols-4">
                                     {displayedProjects.map((project) => (
                                         <div key={project.id}>
                                             <CardProject {...project} />

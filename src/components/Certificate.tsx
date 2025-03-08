@@ -1,57 +1,58 @@
 'use client';
 import React, { useState } from "react";
-import { FaTimes } from "react-icons/fa";
+import { FaExternalLinkAlt, FaTimes } from "react-icons/fa";
 import { FaExpand } from "react-icons/fa6";
 
-const Certificate = ({ image, title, company, data, competences, link }:any) => {
-  const [isOpen, setIsOpen] = useState(false);
+const Certificate = ({ image, title, company, data, competences, link }: any) => {
+  const handleLiveDemo = (e: any) => {
+    if (!link) {
+      e.preventDefault();
+      alert("Live demo link is not available");
+    }
+  };
 
   return (
     <div className="relative w-full group">
-      {/* Thumbnail Container */}
-      <div 
-        className="relative overflow-hidden transition-all duration-300 shadow-lg rounded-xl hover:shadow-2xl hover:-translate-y-1"
-        onClick={() => setIsOpen(true)}
-      >
-        {/* Image with Overlay */}
-        <div className="relative before:content-[''] before:absolute before:inset-0 before:bg-black/10 before:z-10">
-          <img
-            src={image}
-            alt="Certificate"
-            className="object-cover w-full h-auto duration-300 contrast-105 brightness-90 saturate-110 transition-filter group-hover:contrast-100 group-hover:brightness-100 group-hover:saturate-110"
-          />
-        </div>
+      <div className="relative overflow-hidden transition-all duration-300 border shadow-2xl rounded-xl bg-gradient-to-br from-slate-900/90 to-slate-800/90 backdrop-blur-lg border-white/10 hover:shadow-purple-500/20">
+        <div className="absolute inset-0 transition-opacity duration-300 opacity-50 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-pink-500/10 group-hover:opacity-70" />
 
-        {/* Hover Overlay */}
-        <div className="absolute inset-0 z-20 transition-opacity duration-300 opacity-0 cursor-pointer group-hover:opacity-100 bg-black/30">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[60%] group-hover:-translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-400 text-center w-full text-white">
-            <FaExpand className="w-10 h-10 mx-auto mb-2 drop-shadow-md" />
-            <h3 className="text-xl font-semibold drop-shadow-md">View Certificate</h3>
+        <div className="relative z-10 p-5">
+          <div className="">
+            <div className='flex justify-between'>
+              <p className="text-sm leading-relaxed text-gray-300/80 line-clamp-2">
+                {company}
+              </p>
+              <p className="text-sm leading-relaxed text-gray-300/80 line-clamp-2">
+                {data}
+              </p>
+            </div>
+            <h3 className="mt-2 mb-1 text-xl font-semibold text-transparent bg-gradient-to-r from-blue-500 via-purple-300 to-pink-400 bg-clip-text">
+              {title}
+            </h3>
+
+            <h3 className="text-sm text-white">
+             {competences.join(", ")}
+            </h3>
+
+            <div className="flex items-center justify-between gap-2 pt-4">
+              <div className="flex justify-end w-full">
+                <a
+                  href={link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={handleLiveDemo}
+                  className="inline-flex items-center gap-2 text-sm font-medium text-blue-400 transition-colors duration-200 hover:text-blue-300"
+                >
+                  <span className='hidden md:inline'>
+                    Exibir Credential
+                  </span>
+                  <FaExternalLinkAlt className="w-4 h-4 md:w-3 md:h-3" />
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-
-      {/* Modal */}
-      {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-sm animate-fade-in">
-          {/* Close Button */}
-          <button
-            onClick={() => setIsOpen(false)}
-            className="absolute z-50 p-2 text-white transition-colors duration-200 rounded-full top-4 right-4 bg-black/60 hover:bg-black/80 hover:scale-110"
-          >
-            <FaTimes className="w-6 h-6" />
-          </button>
-
-          {/* Modal Content */}
-          <div className="relative max-w-[90vw] max-h-[90vh]">
-            <img
-              src={image}
-              alt="Certificate Full View"
-              className="max-h-[85vh] w-auto object-contain rounded-lg"
-            />
-          </div>
-        </div>
-      )}
     </div>
   );
 };

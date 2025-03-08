@@ -39,7 +39,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
     }, (getLoadingText(pathname) === "Home" ? 4300 : 1200))
 
     return () => clearTimeout(timer)
-  }, [])
+  }, [pathname])
 
   return (
     <>
