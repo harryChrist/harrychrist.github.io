@@ -100,17 +100,17 @@ export default function AboutSection() {
               data-aos="fade-right"
               data-aos-duration="1500"
             >
-              Sou formado em Ciência da Computação pela UVV, amo criar soluções digitais que funcionam. Já trabalhei em vários projetos, sempre aprendendo e buscando resolver problemas de um jeito criativo. Acredito no poder do trabalho em equipe e dou meu melhor em cada projeto. Confere aí o que já fiz! 😄
+              Sou graduado em Ciência da Computação pela Universidade de Vila Velha (UVV) e atuo como Desenvolvedor Full Stack apaixonado por criar sistemas robustos e escaláveis, especialmente com Node.js. Embora também possua conhecimento em back-end, minha principal atuação é no front-end com Next.js e React.js, garantindo eficiência, performance e escalabilidade nas aplicações que desenvolvo.
             </p>
 
             <div className="flex flex-col items-center w-full gap-4 lg:flex-row lg:items-start lg:gap-4 lg:px-0">
-              <a href="" className="w-full lg:w-auto">
+              <a href="https://drive.google.com/drive/folders/1dl7JO1hh6hyBwUrzMxAFiMHmm5KImD_D?usp=sharing" className="w-full lg:w-auto">
                 <button
                   data-aos="fade-up"
                   data-aos-duration="800"
                   className="w-full lg:w-auto sm:px-6 py-2 sm:py-3 rounded-lg bg-gradient-to-r from-[#6366f1] to-[#a855f7] text-white font-medium transition-all duration-300 hover:scale-105 flex items-center justify-center lg:justify-start gap-2 shadow-lg hover:shadow-xl animate-bounce-slow"
                 >
-                  <FiFileText className="w-4 h-4 sm:w-5 sm:h-5" /> Download CV
+                  <FiFileText className="w-4 h-4 sm:w-5 sm:h-5" /> Baixar Currículo
                 </button>
               </a>
               <a href="#Portofolio" className="w-full lg:w-auto">
@@ -119,7 +119,7 @@ export default function AboutSection() {
                   data-aos-duration="1000"
                   className="w-full lg:w-auto sm:px-6 py-2 sm:py-3 rounded-lg border border-[#a855f7]/50 text-[#a855f7] font-medium transition-all duration-300 hover:scale-105 flex items-center justify-center lg:justify-start gap-2 hover:bg-[#a855f7]/10 animate-bounce-slow delay-200"
                 >
-                  <FaCode className="w-4 h-4 sm:w-5 sm:h-5" /> View Projects
+                  <FaCode className="w-4 h-4 sm:w-5 sm:h-5" /> Ver Projetos
                 </button>
               </a>
             </div>

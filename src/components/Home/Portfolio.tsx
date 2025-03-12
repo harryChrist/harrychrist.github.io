@@ -66,8 +66,8 @@ export default function FullWidthTabs() {
                     Portfolio Showcase
                 </h2>
                 <p className="max-w-2xl mx-auto mt-2 text-sm text-slate-400 md:text-base">
-                    Explore my journey through projects, certifications, and technical expertise.
-                    Each section represents a milestone in my continuous learning path.
+                Explore o meu percurso através de projectos, certificações e conhecimentos técnicos.
+                Cada secção representa um marco no meu percurso de aprendizagem contínua.
                 </p>
             </div>
 
