@@ -18,9 +18,10 @@ module.exports = [
     category: "Mobile"
   },
   {
-    id: 2,
+    id: 3,
     title: "Chomusuke Bot",
     description: "Discord Bot and Web Admin Panel.",
+    link: "https://bot.mahoureader.com/",
     image: ['/projects/botscans/home.png', '/projects/botscans/admin.png'],
     tags: ['Next.js', 'Prisma', 'Tailwind', 'PostgreSQL'],
     category: "Web Development"
