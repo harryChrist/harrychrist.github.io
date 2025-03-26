@@ -17,4 +17,12 @@ module.exports = [
     tags: ['React Native', 'Expo', 'Jikan'],
     category: "Mobile"
   },
+  {
+    id: 2,
+    title: "Chomusuke Bot",
+    description: "Discord Bot and Web Admin Panel.",
+    image: ['/projects/botscans/home.png', '/projects/botscans/admin.png'],
+    tags: ['Next.js', 'Prisma', 'Tailwind', 'PostgreSQL'],
+    category: "Web Development"
+  },
 ]
