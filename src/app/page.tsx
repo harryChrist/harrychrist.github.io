@@ -8,7 +8,6 @@ import ContactSection from "@/components/Contact";
 export default function PortfolioPage() {
     return (
         <div className="bg-[#030014]">
-            <AnimatedBackground />
             <HomeSection />
             <AboutSection />
             <PortfolioSection />
