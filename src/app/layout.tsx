@@ -2,15 +2,20 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
+import Script from "next/script";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: 'swap',
+  preload: true,
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: 'swap',
+  preload: true,
 });
 
 export const metadata: Metadata = {
@@ -47,12 +52,34 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        {/* Pré-carregamento de imagens críticas */}
+        <link rel="preload" as="image" href="/me2.png" />
+        <link rel="preload" as="image" href="/henrique.png" />
+        <link rel="preload" as="image" href="/icon.png" />
+        
+        {/* Pré-carregamento de fontes */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           {children}
         </ThemeProvider>
+        
+        {/* Script para pré-carregamento adicional */}
+        <Script id="preload-resources" strategy="beforeInteractive">
+          {`
+            // Pré-carregamento adicional de recursos críticos
+            const criticalImages = ['/me2.png', '/henrique.png', '/icon.png'];
+            criticalImages.forEach(src => {
+              const img = new Image();
+              img.src = src;
+            });
+          `}
+        </Script>
       </body>
     </html>
   );

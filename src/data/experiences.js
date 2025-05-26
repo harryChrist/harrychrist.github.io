@@ -1,5 +1,16 @@
 module.exports = [
     {
+        id: 3,
+        role: "Desenvolvedor Full Stack",
+        company: "BlackBox",
+        location: "Jardim Camburi, Vitória, Espírito Santo, Brasil",
+        period: "Abril de 2025",
+        achievements: [
+            "Em desenvolvimento"
+        ],
+        tools: ["JavaScript", "React", "Python", "Next.js", "PostgreSQL", "Docker"],
+    },
+    {
         id: 2,
         role: "Estagiário de Desenvolvimento de Software",
         company: "Inovetech Engenharia e Inovação",

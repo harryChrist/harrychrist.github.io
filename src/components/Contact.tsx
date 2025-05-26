@@ -15,7 +15,6 @@ export default function ContactSection() {
     email: "",
     message: "",
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
 
   const handleChange = (e: any) => {
@@ -26,37 +25,54 @@ export default function ContactSection() {
     }));
   };
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
-    setIsSubmitting(true);
-    setAlertMessage("");
-
-    try {
-      const form = e.target;
-      const formData = new FormData(form);
-
-      await fetch(form.action, {
-        method: "POST",
-        body: formData,
-      });
-
-      setAlertMessage("Message sent successfully!");
-      setFormData({ name: "", email: "", message: "" });
-    } catch (error) {
-      setAlertMessage("Failed to send message. Please try again.");
-    } finally {
-      setIsSubmitting(false);
+    
+    // Validar se todos os campos estão preenchidos
+    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
+      setAlertMessage("Por favor, preencha todos os campos.");
       setTimeout(() => setAlertMessage(""), 3000);
+      return;
     }
+
+    // Criar o email com os dados do formulário
+    const subject = `Contato de ${formData.name} - Portfolio`;
+    const body = `Olá Henrique,
+
+Meu nome é ${formData.name} e gostaria de entrar em contato.
+
+Email para resposta: ${formData.email}
+
+Mensagem:
+${formData.message}
+
+---
+Enviado através do seu portfolio.`;
+
+    // Criar o link mailto
+    const mailtoLink = `mailto:henriquechristb@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    
+    // Abrir o cliente de email
+    window.location.href = mailtoLink;
+    
+    // Mostrar mensagem de sucesso
+    setAlertMessage("Redirecionando para seu cliente de email...");
+    
+    // Limpar o formulário após um delay
+    setTimeout(() => {
+      setFormData({ name: "", email: "", message: "" });
+      setAlertMessage("");
+    }, 2000);
   };
 
   return (
     <div id="Contact" className="min-h-screen bg-[#030014]">
       {/* Alert Message */}
       {alertMessage && (
-        <div className={`fixed top-4 right-4 p-4 rounded-lg ${alertMessage.includes("success")
-          ? "bg-green-500/20 text-green-400"
-          : "bg-red-500/20 text-red-400"
+        <div className={`fixed top-4 right-4 p-4 rounded-lg z-50 ${
+          alertMessage.includes("Redirecionando") || alertMessage.includes("sucesso")
+            ? "bg-green-500/20 text-green-400"
+            : "bg-red-500/20 text-red-400"
           }`}>
           {alertMessage}
         </div>
@@ -90,13 +106,9 @@ export default function ContactSection() {
             </div>
 
             <form
-              action="https://formsubmit.co/ekizulfarrachman@gmail.com"
-              method="POST"
               onSubmit={handleSubmit}
               className="space-y-6"
             >
-              <input type="hidden" name="_template" value="table" />
-              <input type="hidden" name="_captcha" value="false" />
 
               <div className="relative group">
                 <FaUser className="absolute w-5 h-5 text-gray-400 transition-colors left-4 top-4" />
@@ -106,8 +118,7 @@ export default function ContactSection() {
                   placeholder="Seu Nome"
                   value={formData.name}
                   onChange={handleChange}
-                  disabled={isSubmitting}
-                  className="w-full p-4 pl-12 bg-white/10 rounded-xl border border-white/20 placeholder-gray-500 text-white focus:outline-none focus:ring-2 focus:ring-[#6366f1]/30 transition-all hover:border-[#6366f1]/30 disabled:opacity-50"
+                  className="w-full p-4 pl-12 bg-white/10 rounded-xl border border-white/20 placeholder-gray-500 text-white focus:outline-none focus:ring-2 focus:ring-[#6366f1]/30 transition-all hover:border-[#6366f1]/30"
                   required
                 />
               </div>
@@ -120,8 +131,7 @@ export default function ContactSection() {
                   placeholder="Seu Email"
                   value={formData.email}
                   onChange={handleChange}
-                  disabled={isSubmitting}
-                  className="w-full p-4 pl-12 bg-white/10 rounded-xl border border-white/20 placeholder-gray-500 text-white focus:outline-none focus:ring-2 focus:ring-[#6366f1]/30 transition-all hover:border-[#6366f1]/30 disabled:opacity-50"
+                  className="w-full p-4 pl-12 bg-white/10 rounded-xl border border-white/20 placeholder-gray-500 text-white focus:outline-none focus:ring-2 focus:ring-[#6366f1]/30 transition-all hover:border-[#6366f1]/30"
                   required
                 />
               </div>
@@ -133,19 +143,17 @@ export default function ContactSection() {
                   placeholder="Mensagem"
                   value={formData.message}
                   onChange={handleChange}
-                  disabled={isSubmitting}
-                  className="w-full h-40 p-4 pl-12 bg-white/10 rounded-xl border border-white/20 placeholder-gray-500 text-white focus:outline-none focus:ring-2 focus:ring-[#6366f1]/30 transition-all hover:border-[#6366f1]/30 disabled:opacity-50"
+                  className="w-full h-40 p-4 pl-12 bg-white/10 rounded-xl border border-white/20 placeholder-gray-500 text-white focus:outline-none focus:ring-2 focus:ring-[#6366f1]/30 transition-all hover:border-[#6366f1]/30"
                   required
                 />
               </div>
 
               <button
                 type="submit"
-                disabled={isSubmitting}
-                className="w-full bg-gradient-to-r from-[#6366f1] to-[#a855f7] text-white py-4 rounded-xl font-semibold transition-all hover:scale-[1.02] hover:shadow-lg hover:shadow-[#6366f1]/20 active:scale-95 flex items-center justify-center gap-2 disabled:opacity-50"
+                className="w-full bg-gradient-to-r from-[#6366f1] to-[#a855f7] text-white py-4 rounded-xl font-semibold transition-all hover:scale-[1.02] hover:shadow-lg hover:shadow-[#6366f1]/20 active:scale-95 flex items-center justify-center gap-2"
               >
                 <FaPaperPlane className="w-5 h-5" />
-                {isSubmitting ? 'Sending...' : 'Send Message'}
+                Enviar Email
               </button>
             </form>
           </div>
