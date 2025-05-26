@@ -22,7 +22,9 @@ export const metadata: Metadata = {
   title: "Henrique Christ",
   description: "Meu Portfólio - Henrique Christ",
   icons: {
-    icon: "/icon.png"
+    icon: "/logo.png",
+    shortcut: "/logo.png",
+    apple: "/logo.png"
   },
   openGraph: {
     title: "Henrique Christ",
@@ -56,7 +58,7 @@ export default function RootLayout({
         {/* Pré-carregamento de imagens críticas */}
         <link rel="preload" as="image" href="/me2.png" />
         <link rel="preload" as="image" href="/henrique.png" />
-        <link rel="preload" as="image" href="/icon.png" />
+        <link rel="preload" as="image" href="/logo.png" />
         
         {/* Pré-carregamento de fontes */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -73,7 +75,7 @@ export default function RootLayout({
         <Script id="preload-resources" strategy="beforeInteractive">
           {`
             // Pré-carregamento adicional de recursos críticos
-            const criticalImages = ['/me2.png', '/henrique.png', '/icon.png'];
+            const criticalImages = ['/me2.png', '/henrique.png', '/logo.png'];
             criticalImages.forEach(src => {
               const img = new Image();
               img.src = src;
