@@ -104,7 +104,7 @@ export default function AboutSection() {
             </p>
 
             <div className="flex flex-col items-center w-full gap-4 lg:flex-row lg:items-start lg:gap-4 lg:px-0">
-              <a href="https://drive.google.com/drive/folders/1dl7JO1hh6hyBwUrzMxAFiMHmm5KImD_D?usp=sharing" className="w-full lg:w-auto">
+              <a href="https://drive.google.com/drive/folders/1dl7JO1hh6hyBwUrzMxAFiMHmm5KImD_D?usp=sharing" className="w-full lg:w-auto" target="_blank" rel="noopener noreferrer">
                 <button
                   data-aos="fade-up"
                   data-aos-duration="800"
