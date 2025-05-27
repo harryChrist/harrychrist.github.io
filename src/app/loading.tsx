@@ -79,7 +79,7 @@ export default function Loading({ text, progress = 0, showProgress = false, onAn
               }
               
               setFadeClass("opacity-100")
-            }, 200)
+            }, 150)
             
             iterationCount++
           } else {
@@ -102,13 +102,13 @@ export default function Loading({ text, progress = 0, showProgress = false, onAn
                   // Aguardar animação de fechamento antes de sair
                   setTimeout(() => {
                     onLoadingExit?.()
-                  }, 800)
-                }, 600)
-              }, 800)
-            }, 200)
+                  }, 600)
+                }, 400)
+              }, 600)
+            }, 150)
           }
-        }, 400)
-      }, 500)
+        }, 300)
+      }, 300)
 
       return () => {
         clearTimeout(initialDelay)
@@ -126,9 +126,9 @@ export default function Loading({ text, progress = 0, showProgress = false, onAn
           
           setTimeout(() => {
             onLoadingExit?.()
-          }, 800)
-        }, 400)
-      }, 1500)
+          }, 600)
+        }, 300)
+      }, 1000)
       return () => clearTimeout(timer)
     }
   }, [text, onAnimationComplete, onLoadingExit])
