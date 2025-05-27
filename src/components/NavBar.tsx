@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { FaGithub, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { MdMenu, MdClose } from "react-icons/md";
 import { ThemeToggle } from "./theme-toggle";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function NavBar() {
     const [isOpen, setIsOpen] = useState(false);
@@ -153,46 +154,86 @@ export default function NavBar() {
             </div>
 
             {/* Mobile Menu Overlay */}
-            <div
-                className={`fixed top-0 z-1 right-0 h-full bg-black transition-all duration-600 ease-in-out ${isOpen ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"
-                    } w-full md:w-1/2`}
-            >
-                {/* Ícone de fechar dentro do menu */}
-                <button
-                    className="absolute flex items-center justify-center w-12 h-12 transition-all duration-200 bg-white rounded-full shadow-lg z-1 top-4 right-4 bg-opacity-20 hover:scale-110 hover:shadow-xl"
-                    onClick={toggleMenu}
-                >
-                    <MdClose className="text-black" size={24} />
-                </button>
+            <AnimatePresence>
+                {isOpen && (
+                    <>
+                        <motion.div
+                            initial={{ x: "100%" }}
+                            animate={{ x: 0 }}
+                            exit={{ x: "100%" }}
+                            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                            className="fixed top-0 z-1 left-0 h-full bg-black w-full md:w-1/2"
+                        >
+                            {/* Ícone de fechar dentro do menu */}
+                            <button
+                                className="absolute flex items-center justify-center w-12 h-12 transition-all duration-200 bg-white rounded-full shadow-lg z-1 top-4 right-4 bg-opacity-20 hover:scale-110 hover:shadow-xl"
+                                onClick={toggleMenu}
+                            >
+                                <MdClose className="text-black" size={24} />
+                            </button>
 
-                <div className="absolute flex items-center w-full h-full p-8 space-y-6 text-left">
-                    <div className='w-full space-y-4 justiy-center'>
-                        <h3>Navegação</h3>
-                        <hr className="h-px bg-gray-700 border-0" />
-                        <ul className="my-6 mb-12 space-y-4">
-                            <li className="text-2xl text-white uppercase hover:text-blue-500"><a href='#about'>Sobre</a></li>
-                            <li className="text-2xl text-white uppercase hover:text-blue-500"><a href='#skills'>Habilidades</a></li>
-                            <li className="text-2xl text-white uppercase hover:text-blue-500"><a href='#projects'>Projetos</a></li>
-                            <li className="text-2xl text-white uppercase hover:text-blue-500"><a href='#contact'>Contact</a></li>
-                        </ul>
-                        <hr className="h-px bg-gray-700 border-0" />
-                        <h3>Social</h3>
-                        <ul className="flex space-x-5">
-                            <li className="text-3xl text-white"><FaLinkedin /></li>
-                            <li className="text-3xl text-white"><FaInstagram /></li>
-                            <li className="text-3xl text-white"><FaGithub /></li>
-                            <li className="text-3xl text-white"><FaTwitter /></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+                            <div className="absolute flex items-center w-full h-full p-8 space-y-6 text-left">
+                                <div className='w-full space-y-4 justiy-center'>
+                                    <h3>Navegação</h3>
+                                    <hr className="h-px bg-gray-700 border-0" />
+                                    <ul className="my-6 mb-12 space-y-4">
+                                        {navItems.map((item) => (
+                                            <li
+                                                key={item.label}
+                                                className="text-2xl text-white uppercase hover:text-blue-500"
+                                            >
+                                                <a 
+                                                    href={item.href}
+                                                    onClick={(e) => {
+                                                        scrollToSection(e, item.href);
+                                                        setIsOpen(false);
+                                                    }}
+                                                >
+                                                    {item.label}
+                                                </a>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                    <hr className="h-px bg-gray-700 border-0" />
+                                    <h3>Social</h3>
+                                    <ul className="flex space-x-5">
+                                        <li className="text-3xl text-white hover:text-blue-500 transition-colors">
+                                            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+                                                <FaLinkedin />
+                                            </a>
+                                        </li>
+                                        <li className="text-3xl text-white hover:text-blue-500 transition-colors">
+                                            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+                                                <FaInstagram />
+                                            </a>
+                                        </li>
+                                        <li className="text-3xl text-white hover:text-blue-500 transition-colors">
+                                            <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+                                                <FaGithub />
+                                            </a>
+                                        </li>
+                                        <li className="text-3xl text-white hover:text-blue-500 transition-colors">
+                                            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+                                                <FaTwitter />
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </motion.div>
 
-            {/* Overlay escuro */}
-            <div
-                className={`fixed top-0 left-0 h-full w-full bg-black transition-all duration-500 ease-in-out ${isOpen ? "opacity-50" : "opacity-0 pointer-events-none"
-                    }`}
-                onClick={toggleMenu}
-            ></div>
+                        {/* Overlay escuro */}
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 0.5 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.2 }}
+                            className="fixed top-0 left-0 h-full w-full bg-black"
+                            onClick={toggleMenu}
+                        />
+                    </>
+                )}
+            </AnimatePresence>
         </nav>
     )
 }
